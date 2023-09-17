@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	menu()
@@ -28,7 +31,7 @@ func menu() {
 
 	switch input {
 	case 1:
-		firstProblem()
+		firstExample()
 	case 2:
 
 	case 3:
@@ -49,16 +52,53 @@ func menu() {
 
 	case 11:
 		fmt.Println("Thank you for using our program...")
+		break
 	default:
 		fmt.Println("Please enter a valid number from the options menu.")
 	}
 }
 
-func firstProblem() {
-	var sagot string
-	fmt.Println("Test?")
-	fmt.Scanln(&sagot)
+func firstExample() {
 
+	fmt.Println("Running first example of for loop:")
+	firstSum := 0
+	for i := 0; i <= 10; i++ {
+		firstSum += i
+	}
+	fmt.Println(firstSum)
+
+	fmt.Println("Running second example of for loop:")
+	secondSum, j := 0, 0
+	for j <= 10 {
+		secondSum += j
+		j++
+	}
+
+	fmt.Println(secondSum)
+
+	fmt.Println("Running first example of if-else statements")
+	x := float64(-4)
+	var sqrtValue string
+	if x < 0 {
+		sqrtValue = fmt.Sprint(math.Sqrt(-x)) + "i"
+	} else {
+		sqrtValue = fmt.Sprint(math.Sqrt(x))
+	}
+
+	fmt.Printf("Square root of x = -4 is: %s\n", sqrtValue)
+
+	if power := math.Pow(2, 8); power <= 25 {
+		fmt.Printf("%.2f is <= 25\n", power)
+	} else if power <= 50 {
+		fmt.Printf("%.2f is <= 50\n", power)
+	} else if power <= 100 {
+		fmt.Printf("%.2f is <= 100\n", power)
+	} else {
+		fmt.Printf("%.2f is > 100\n", power)
+	}
+
+	fmt.Println("Press Enter to continue...")
 	fmt.Scanln()
+
 	menu()
 }
