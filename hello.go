@@ -99,6 +99,7 @@ func firstExample() {
 
 	fmt.Println("Press Enter to continue...")
 	fmt.Scanln()
+	fmt.Scanln()
 
 	menu()
 }
