@@ -12,8 +12,6 @@ func main() {
 func menu() {
 	//can add more options if we want to show more examples/adjust if u add something
 	var input int8
-	//TODO make problems
-	//FIXME break out of loop when one of switch case is triggered and proceed to method in switch case
 
 	fmt.Println("1. ")
 	fmt.Println("2. ")
