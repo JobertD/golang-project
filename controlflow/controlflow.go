@@ -60,6 +60,7 @@ func main() {
 
 	// You may also make use of a short statement before the conditional which can be used to prepare variables within the scope of the
 	// if-else blocks
+	fmt.Println("Running second example of if-else statements")
 	if power := math.Pow(2, 8); power <= 25 {
 		fmt.Printf("%.2f is <= 25\n", power)
 	} else if power <= 50 {
@@ -72,8 +73,17 @@ func main() {
 
 	// SWITCH STATEMENTS
 	/*
-		Go's switch statements are similar to ones in Java or C, but
-
+		Go's switch statements are similar to ones in Java or C, but each case does not have to be a constant representing an integer value.
+		The switch cases may also not be followed by a break statement since only one case will always be executed.
 	*/
+	fmt.Println("Running example of switch statements")
+	switch day := "monday"; day {
+	case "saturday":
+		fmt.Println("Today is Saturday!")
+	case "monday":
+		fmt.Println("Today is Monday!")
+	default:
+		fmt.Println("Today is " + day)
+	}
 
 }
