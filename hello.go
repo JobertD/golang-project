@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	menu()
@@ -33,7 +35,7 @@ Loop:
 			firstProblem()
 			break Loop
 		case 2:
-
+			Menu()
 		case 3:
 
 		case 4:
