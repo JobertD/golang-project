@@ -1,4 +1,4 @@
-package generics
+package main
 
 import (
 	"fmt"
@@ -11,12 +11,10 @@ func AddInt(a int, b int) int {
 	return a + b
 }
 
-/*
 // Non-generic function to add two float64 numbers.
 func AddFloat(a float64, b float64) float64 {
-    return a + b
+	return a + b
 }
-*/
 
 // DemoNonGenerics demonstrates the usage of a non-generic function.
 func DemoNonGenerics() {
@@ -50,20 +48,7 @@ func DemoGeneric() {
 	fmt.Printf("Generic result: %d\n", result)
 }
 
-/*
-// UserID is a custom type representing a user ID.
-type UserID int
-
-// AddTil is a generic function using the tilde (~) constraint.
-func AddTil[T ~int | float64](a T, b T) T {
-	return a + b
+func main() {
+	DemoNonGenerics()
+	DemoGeneric()
 }
-
-// DemoGenericTilde demonstrates the usage of a generic function with the tilde constraint.
-func DemoGenericTilde() {
-	a := UserID(1)
-	b := UserID(2)
-	result := AddTil(a, b)
-	fmt.Printf("Generic using tilde result: %+v\n", result)
-}
-*/
