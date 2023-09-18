@@ -11,7 +11,6 @@ func Main() {
 }
 
 func Menu() {
-	//can add more options if we want to show more examples/adjust if u add something
 	var input int8
 
 	fmt.Println("1. Control Flow Statements")

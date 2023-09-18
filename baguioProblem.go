@@ -23,6 +23,10 @@ type ParkingLot struct {
 }
 
 func main() {
+	BaguioMenu()
+}
+
+func BaguioMenu() {
 	smBaguio := Location{
 		Name:           "Sm Baguio City",
 		TotalSlots:     TotalSlotsSmBaguio,
@@ -99,7 +103,7 @@ func main() {
 				}
 			case 3:
 				fmt.Println("Going back to the main menu.")
-				break
+				BaguioMenu()
 			default:
 				fmt.Println("Invalid choice. Please select a valid option.")
 			}
