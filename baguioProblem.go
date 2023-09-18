@@ -5,103 +5,113 @@ import (
 	"math/rand"
 )
 
+type Location struct {
+	Name           string
+	TotalSlots     int
+	AvailableSlots int
+	ParkingLot     ParkingLot
+}
+
 const (
-	totalParkingSlots = 10
+	TotalSlotsSmBaguio    = 20
+	TotalSlotsBurnhamPark = 15
+	TotalSlotsCampJohnHay = 10
 )
 
 type ParkingLot struct {
-	Slots [totalParkingSlots]string
+	Slots []string
 }
 
 func main() {
+	smBaguio := Location{
+		Name:           "Sm Baguio City",
+		TotalSlots:     TotalSlotsSmBaguio,
+		AvailableSlots: TotalSlotsSmBaguio,
+		ParkingLot:     ParkingLot{Slots: make([]string, TotalSlotsSmBaguio)},
+	}
 
-	parkingLot := &ParkingLot{}
+	burnhamPark := Location{
+		Name:           "Burnham Park",
+		TotalSlots:     TotalSlotsBurnhamPark,
+		AvailableSlots: TotalSlotsBurnhamPark,
+		ParkingLot:     ParkingLot{Slots: make([]string, TotalSlotsBurnhamPark)},
+	}
+
+	campJohnHay := Location{
+		Name:           "Camp John Hay",
+		TotalSlots:     TotalSlotsCampJohnHay,
+		AvailableSlots: TotalSlotsCampJohnHay,
+		ParkingLot:     ParkingLot{Slots: make([]string, TotalSlotsCampJohnHay)},
+	}
+
+	locations := []Location{smBaguio, burnhamPark, campJohnHay}
 
 	for {
-
-		for i, slot := range parkingLot.Slots {
-			if slot == "" {
-				fmt.Printf("Slot %d: Available\n", i+1)
-			} else {
-				fmt.Printf("Slot %d: Taken by car with ID: %s\n", i+1, slot)
-			}
-		}
-		fmt.Println("Parking Reservation System")
-		fmt.Println("1. Reserve Parking Slot")
-		fmt.Println("2. Vacate Parking Slot")
-		fmt.Println("3. Exit")
-
-		var choice int
+		displayLocations(locations)
+		var locationChoice int
 		fmt.Print("Enter your choice: ")
-		fmt.Scanln(&choice)
+		fmt.Scanln(&locationChoice)
+		if locationChoice < 1 || locationChoice > len(locations) {
+			fmt.Println("Invalid location choice. Please select a valid option.")
+			continue
+		}
 
-		switch choice {
-		case 1:
+		location := &locations[locationChoice-1]
 
-			{
-				displayLocations()
-				var locationChoice int
-				fmt.Print("Enter your location choice: ")
-				fmt.Scanln(&locationChoice)
-
-				switch locationChoice {
-				case 1:
-					{
-					}
-				case 2:
-					{
-					}
-				case 3:
-					{
-					}
-
+		for {
+			fmt.Printf("Parking Slots for %s:\n", location.Name)
+			for i, slot := range location.ParkingLot.Slots {
+				if slot == "" {
+					fmt.Printf("Slot %d: Available\n", i+1)
+				} else {
+					fmt.Printf("Slot %d: Taken by car with ID: %s\n", i+1, slot)
 				}
+			}
+
+			fmt.Println("Parking Reservation System")
+			fmt.Println("1. Reserve Parking Slot")
+			fmt.Println("2. Vacate Parking Slot")
+			fmt.Println("3. Go back")
+
+			var choice int
+			fmt.Print("Enter your choice: ")
+			fmt.Scanln(&choice)
+
+			switch choice {
+			case 1:
 				var slotNumber int
 				fmt.Print("Enter the slot number to reserve: ")
 				fmt.Scanln(&slotNumber)
 				id := generateRandomID()
-				if reserveSpecificParkingSlot(parkingLot, slotNumber, id) {
+				if reserveSpecificParkingSlot(location, slotNumber, id) {
 					fmt.Printf("Reserved slot %d for car with ID: %s\n", slotNumber, id)
 				} else {
 					fmt.Printf("Slot %d is already taken or invalid.\n", slotNumber)
-
 				}
-				fmt.Println("Press any button to continue...")
-				fmt.Scanln()
-				fmt.Scanln()
-			}
-		case 2:
-			{
-				displayLocations()
+			case 2:
 				var slotNumber int
 				fmt.Print("Enter the slot number to vacate: ")
 				fmt.Scanln(&slotNumber)
-				if vacateParkingSlot(parkingLot, slotNumber) {
+				if vacateParkingSlot(location, slotNumber) {
 					fmt.Printf("Slot %d is now vacant.\n", slotNumber)
 				} else {
 					fmt.Printf("Slot %d is already vacant or invalid.\n", slotNumber)
-
 				}
-
-				fmt.Println()
-				fmt.Println("Press any button to continue...")
-				fmt.Scanln()
+			case 3:
+				fmt.Println("Going back to the main menu.")
+				break
+			default:
+				fmt.Println("Invalid choice. Please select a valid option.")
 			}
-
-		case 3:
-			fmt.Println("Exiting the program.")
-			return
-		default:
-			fmt.Println("Invalid choice. Please select a valid option.")
 		}
 	}
 }
 
-func displayLocations() {
-	fmt.Println("Select Landmark")
-	fmt.Println("1. Sm Baguio City")
-	fmt.Println("2. Burnham Park")
-	fmt.Println("3. Camp John Hay")
+func displayLocations(locations []Location) {
+	fmt.Println("Select Location:")
+	for i, location := range locations {
+		fmt.Printf("%d. %s (%d available slots)\n", i+1, location.Name, location.AvailableSlots)
+	}
 }
 
 func generateRandomID() string {
@@ -113,17 +123,19 @@ func generateRandomID() string {
 	return string(b)
 }
 
-func reserveSpecificParkingSlot(parkingLot *ParkingLot, slotNumber int, id string) bool {
-	if slotNumber >= 1 && slotNumber <= totalParkingSlots && parkingLot.Slots[slotNumber-1] == "" {
-		parkingLot.Slots[slotNumber-1] = id
+func reserveSpecificParkingSlot(location *Location, slotNumber int, id string) bool {
+	if slotNumber >= 1 && slotNumber <= location.TotalSlots && location.ParkingLot.Slots[slotNumber-1] == "" {
+		location.ParkingLot.Slots[slotNumber-1] = id
+		location.AvailableSlots--
 		return true
 	}
 	return false
 }
 
-func vacateParkingSlot(parkingLot *ParkingLot, slotNumber int) bool {
-	if slotNumber >= 1 && slotNumber <= totalParkingSlots && parkingLot.Slots[slotNumber-1] != "" {
-		parkingLot.Slots[slotNumber-1] = ""
+func vacateParkingSlot(location *Location, slotNumber int) bool {
+	if slotNumber >= 1 && slotNumber <= location.TotalSlots && location.ParkingLot.Slots[slotNumber-1] != "" {
+		location.ParkingLot.Slots[slotNumber-1] = ""
+		location.AvailableSlots++
 		return true
 	}
 	return false
