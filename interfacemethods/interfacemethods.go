@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+// An interface defines a set of method signatures that a type must implement
 // Define the Shape interface with a single method: Area()
 type Shape interface {
 	Area() float64
