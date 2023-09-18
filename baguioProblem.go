@@ -26,9 +26,11 @@ func main() {
 		switch choice {
 		case 1:
 			{
+				displayLocations()
 			}
 		case 2:
 			{
+				displayLocations()
 			}
 		case 3:
 			fmt.Println("Exiting the program.")
@@ -37,6 +39,13 @@ func main() {
 			fmt.Println("Invalid choice. Please select a valid option.")
 		}
 	}
+}
+
+func displayLocations() {
+	fmt.Println("Select Landmark")
+	fmt.Println("1. Sm Baguio City")
+	fmt.Println("2. Burnham Park")
+	fmt.Println("3. Camp John Hay")
 }
 
 func generateRandomID() string {
