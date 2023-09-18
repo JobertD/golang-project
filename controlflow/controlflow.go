@@ -1,11 +1,11 @@
-package main
+package controlflow
 
 import (
 	"fmt"
 	"math"
 )
 
-func main() {
+func Controlflow() {
 
 	// FOR LOOPS
 
