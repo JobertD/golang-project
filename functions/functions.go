@@ -82,10 +82,18 @@ func summationOfInt(digit ...int) int {
 
 /*
 3. Anonymous Functions
-- also known as "function literals"
+- also known as "function literals" or closures
 - functions that don't have a name
 - can be defined inline within other functions or expressions
 */
+
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
 
 /*
 4. Defer Statements (delayed invocations)
@@ -93,6 +101,12 @@ func summationOfInt(digit ...int) int {
 - often used to clean up resources or for tasks that should run regardless of how a function exits
 
   ** Notice how the first statement in the main function will be executed last
+*/
+
+// TODO: Add topic of method overloading
+
+/*
+5. Method Overloading
 */
 
 // Main function
@@ -160,22 +174,19 @@ func main() {
 	fmt.Printf("The product of %d and %d is %d\n", 10, 30, product)
 
 	// 3c. Anonymous function with closure
-	closureExample := 5
-
-	// Anonymous function that captures the outer variable 'closureExample'
-	increment := func() int {
-		closureExample++
-		return closureExample
+	pos, neg := adder(), adder()
+	for i := 0; i < 10; i++ {
+		fmt.Println(
+			pos(i),
+			neg(-2*i),
+		)
 	}
-
-	fmt.Println("\nx:", closureExample)    // Output: closureExample: 5
-	fmt.Println("Increment:", increment()) // Output: Increment: 1, resulting in 6
-	fmt.Println("x:", closureExample)      // Output: closureExample: 6 (value of 'closureExample' has been modified)
-
 	/*
 		This is an example of a closure,
 		where the function "remembers" the state of the variables it references,
-		even after it goes out of scope.
+		even after it goes out of scope. See how closures capture and persist their
+		internal state across multiple function calls(pos and neg being separate function
+		calls of adder()), which is a powerful concept for maintaining state within functions.
 	*/
 
 }
