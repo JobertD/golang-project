@@ -4,10 +4,6 @@ import (
 	"fmt"
 )
 
-func main() {
-	array()
-}
-
 func Menu() {
 	// Display the menu options.
 	fmt.Println("Menu:")
