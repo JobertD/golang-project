@@ -50,6 +50,7 @@ func DemoGeneric() {
 	fmt.Printf("Generic result: %d\n", result)
 }
 
+/*
 // UserID is a custom type representing a user ID.
 type UserID int
 
@@ -65,3 +66,4 @@ func DemoGenericTilde() {
 	result := AddTil(a, b)
 	fmt.Printf("Generic using tilde result: %+v\n", result)
 }
+*/
