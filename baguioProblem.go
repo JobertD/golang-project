@@ -89,6 +89,7 @@ func BaguioMenu() {
 				id := generateRandomID()
 				if reserveSpecificParkingSlot(location, slotNumber, id) {
 					fmt.Printf("Reserved slot %d for car with ID: %s\n", slotNumber, id)
+					location.AvailableSlots -= 1
 				} else {
 					fmt.Printf("Slot %d is already taken or invalid.\n", slotNumber)
 				}
@@ -98,6 +99,7 @@ func BaguioMenu() {
 				fmt.Scanln(&slotNumber)
 				if vacateParkingSlot(location, slotNumber) {
 					fmt.Printf("Slot %d is now vacant.\n", slotNumber)
+					location.AvailableSlots += 1
 				} else {
 					fmt.Printf("Slot %d is already vacant or invalid.\n", slotNumber)
 				}
