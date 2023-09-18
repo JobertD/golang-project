@@ -2,19 +2,20 @@ package main
 
 import (
 	"fmt"
+	"presentation/compositeTypes"
 	"presentation/controlflow"
 )
 
-func main() {
-	menu()
+func Main() {
+	Menu()
 }
 
-func menu() {
+func Menu() {
 	//can add more options if we want to show more examples/adjust if u add something
 	var input int8
 
-	fmt.Println("1. ")
-	fmt.Println("2. ")
+	fmt.Println("1. Control Flow Statements")
+	fmt.Println("2. Composite Types")
 	fmt.Println("3. ")
 	fmt.Println("4. ")
 	fmt.Println("5. ")
@@ -36,7 +37,12 @@ func menu() {
 		fmt.Scanln()
 		fmt.Scanln()
 	case 2:
-		Menu()
+		fmt.Println()
+		compositeTypes.Menu()
+		fmt.Println()
+		fmt.Println("Press Enter to continue...")
+		fmt.Scanln()
+		fmt.Scanln()
 	case 3:
 
 	case 4:
