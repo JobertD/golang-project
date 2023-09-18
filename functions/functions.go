@@ -100,19 +100,28 @@ func adder() func(int) int {
 - ensure that a function call is performed later
 - often used to clean up resources or for tasks that should run regardless of how a function exits
 
-  ** Notice how the first statement in the main function will be executed last
+
 */
+
+func deferExample() {
+	defer fmt.Println("bye labyu")
+	fmt.Println("\nHello")
+	fmt.Println("How are you?")
+	fmt.Println("Kumain ka na ba?")
+	fmt.Println("Wag ka papalipas gutom, ah?")
+	fmt.Println("Mwamwa")
+}
 
 // TODO: Add topic of method overloading
 
 /*
 5. Method Overloading
+-
 */
 
 // Main function
 func main() {
 
-	defer fmt.Println("\nDeferred statement.")
 	// 1a
 	greet()
 
@@ -172,6 +181,7 @@ func main() {
 	}
 	product := multiply(10, 30)
 	fmt.Printf("The product of %d and %d is %d\n", 10, 30, product)
+	fmt.Println("")
 
 	// 3c. Anonymous function with closure
 	pos, neg := adder(), adder()
@@ -188,5 +198,8 @@ func main() {
 		internal state across multiple function calls(pos and neg being separate function
 		calls of adder()), which is a powerful concept for maintaining state within functions.
 	*/
+
+	// 4. Defer statement
+	deferExample()
 
 }
