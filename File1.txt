@@ -1,2 +1,0 @@
-Group5_GoLang_9373
-This is a golang project.
