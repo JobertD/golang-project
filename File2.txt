@@ -1,3 +1,1 @@
-This is another test. try try
-Try test
-This is how to resolve a conflict
+This is how to REVERT.
