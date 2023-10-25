@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 This is how to REVERT.
+=======
+This is another test. try try
+>>>>>>> parent of 70d7c39 (Modified File2)
